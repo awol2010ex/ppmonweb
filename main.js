@@ -54,7 +54,7 @@ var cocos2dApp = cc.Application.extend({
     }
 });
 
-var myApp = new cocos2dApp(GameWalkingMapLayer.scene);
+var myApp = new cocos2dApp(TitleScreen.scene);
 
 var AnchorPointCenter = new cc.Point(0.5, 0.5);
 var AnchorPointTop = new cc.Point(0.5, 1);

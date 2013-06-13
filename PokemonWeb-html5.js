@@ -40,7 +40,9 @@ var MW = MW || {};
         appFiles:[
             'src/GameWalkingMapLayer.js',//冒险行走地图
             'src/PokemonTrainer.js',//行走的训练员
+            'src/TitleScreen.js',//开机画面
             'src/Resource.js'//资源
+            
         ]
     };
 

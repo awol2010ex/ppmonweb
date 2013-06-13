@@ -1,12 +1,11 @@
-cc.dumpConfig();
 
+//训练员行走地图层
 var GameWalkingMapLayer = cc.Layer.extend({
 	_backTileMap:null,
 	_playerSprite:null,
     init:function () {
         var bRet = false;
         if (this._super()) {
-            winSize = cc.Director.getInstance().getWinSize();
             
             //控制
             this.initControll();
