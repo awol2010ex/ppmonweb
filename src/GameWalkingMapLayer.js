@@ -79,7 +79,7 @@ GameWalkingMapLayer.create = function () {
     }
     return null;
 };
-
+//”Œœ∑≥°æ∞
 GameWalkingMapLayer.scene = function () {
     var scene = cc.Scene.create();
     var layer = GameWalkingMapLayer.create();
