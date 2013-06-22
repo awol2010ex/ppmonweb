@@ -11,6 +11,7 @@ var PokemonTrainer = cc.Sprite
 			_backTileMap:null ,//地图
 			ctor : function() {
 				this._super();
+				/*
 				// 精灵帧图
 				var s_shellysprites_texture = cc.TextureCache.getInstance()
 						.addImage(s_shellysprites_img);
@@ -42,6 +43,14 @@ var PokemonTrainer = cc.Sprite
 				this._frames.push(cc.SpriteFrame.createWithTexture(
 						s_shellysprites_texture, cc.rect(160, 60, 20, 20)));
 
+*/
+				cc.SpriteFrameCache.getInstance().addSpriteFrames(s_shellysprites_plist);//加载精灵
+				for(var i=0;i<12;i++){
+					this._frames.push(cc.SpriteFrameCache.getInstance().getSpriteFrame("shellysprites_walk_"+i+".png"));
+				}
+				
+				
+				
 				// 各方向帧
 				this.anim_frames_d = [ this._frames[3], this._frames[7],
 						this._frames[11] ];
