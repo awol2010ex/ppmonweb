@@ -1,13 +1,12 @@
 var PokemonTrainer = cc.Sprite
 		.extend({
-			_frames : [],
 			isWalk : false,// 是否正在行走
 			anim_duation : 0.05,
 			move_duation : 0.15,
-			anim_frames_w : null,
-			anim_frames_a : null,
-			anim_frames_d : null,
-			anim_frames_s : null,
+			anim_frames_w : [],
+			anim_frames_a : [],
+			anim_frames_d : [],
+			anim_frames_s : [],
 			_backTileMap:null ,//地图
 			ctor : function() {
 				this._super();
@@ -44,6 +43,7 @@ var PokemonTrainer = cc.Sprite
 						s_shellysprites_texture, cc.rect(160, 60, 20, 20)));
 
 */
+				/*
 				cc.SpriteFrameCache.getInstance().addSpriteFrames(s_shellysprites_plist);//加载精灵
 				for(var i=0;i<12;i++){
 					this._frames.push(cc.SpriteFrameCache.getInstance().getSpriteFrame("shellysprites_walk_"+i+".png"));
@@ -60,8 +60,20 @@ var PokemonTrainer = cc.Sprite
 						this._frames[10] ];
 				this.anim_frames_s = [ this._frames[0], this._frames[4],
 						this._frames[8] ];
+						*/
+				
+				// 各方向帧
+				cc.SpriteFrameCache.getInstance().addSpriteFrames(s_dp_dawn_plist);//加载精灵
+				var direction =['d','a','w','s'];
+				for(var i=1;i<=3;i++){
+					for(var j=0;j<4;j++){
+						var frameName ="dp_dawn_walk_"+direction[j]+"_"+i+".png";
+						this["anim_frames_"+direction[j]].push(cc.SpriteFrameCache.getInstance().getSpriteFrame(frameName));
+					}
+				}
+				
 				// 初始帧
-				this.initWithSpriteFrame(this._frames[0]);
+				this.initWithSpriteFrame(this.anim_frames_s[0]);
 
 			},
 			// 行走
@@ -70,11 +82,11 @@ var PokemonTrainer = cc.Sprite
 					return;
 				}
 				var callFunc = cc.CallFunc.create(this.walkDone, this, tag);// 行走完动作
-
+				// 初始帧
+				this.initWithSpriteFrame(this["anim_frames_"+tag][0]);
 				if (tag == 'd') {// 右
 					
-					// 初始帧
-					this.initWithSpriteFrame(this._frames[3]);
+					
 					
 					//检测障碍物
 					var layer = this._backTileMap.getLayer("objects");
@@ -107,8 +119,6 @@ var PokemonTrainer = cc.Sprite
 
 				} else if (tag == 'a') {// 左
 					
-					// 初始帧
-					this.initWithSpriteFrame(this._frames[1]);
 					
 					//检测障碍物
 					var layer = this._backTileMap.getLayer("objects");
@@ -138,8 +148,6 @@ var PokemonTrainer = cc.Sprite
 					this.runAction(actions);
 
 				} else if (tag == 'w') {// 上
-					// 初始帧
-					this.initWithSpriteFrame(this._frames[2]);
 					
 					//检测障碍物
 					
@@ -169,8 +177,6 @@ var PokemonTrainer = cc.Sprite
 					this.runAction(actions);
 
 				} else if (tag == 's') {// 下
-					// 初始帧
-					this.initWithSpriteFrame(this._frames[0]);
 					//检测障碍物
 					
 					
